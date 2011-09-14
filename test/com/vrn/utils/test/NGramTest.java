@@ -24,12 +24,12 @@ import static org.junit.Assert.*;
 
 public class NGramTest {
     protected NGram<String> ngram;
-    protected List< NGram<String> > ngrams;
     
     @Before
     public void setUp() {
         ngram = new NGram<String>(2);
-        ngrams = new ArrayList<NGram<String>>();
+        ngram.getTuple().add("the");
+        ngram.getTuple().add("dog");
     }
 
     @Test
@@ -38,16 +38,30 @@ public class NGramTest {
     }
 
     @Test
-    public void parsedNGramsTest() {
-        String inputText = "The dog was sick.";
-        String[] tokens = inputText.replaceAll("\\.", "").split(" ");
+    public void tupleSizeTest() {
+        assertEquals(2, ngram.getTupleSize());
+    }
 
-        // TEST 1 bi-gram test
-        ngrams = NGramFactory.parseNgrams(tokens, 2);
+    @Test
+    public void tupleTest() {
+        assertEquals("the", ngram.getTuple().get(0));
+        assertEquals("dog", ngram.getTuple().get(1));
+    }
+
+    @Test
+    public void isCompleteTest() {
+        // TEST 1: make sure the currently constructed bi-gram
+        // is correctly a bi-gram.
+        assertEquals(true, ngram.isCompleteNGram());
+
+        // TEST 2: empty the bi-gram tuple and then check it appropriately
+        // fails.
+        ngram.getTuple().removeAll(ngram.getTuple());
+        assertEquals(false, ngram.isCompleteNGram());
     }
 
     @After
     public void tearDown() {
-
+        ngram = null;
     }
 }
