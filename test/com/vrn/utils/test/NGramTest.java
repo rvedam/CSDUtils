@@ -34,13 +34,16 @@ public class NGramTest {
 
     @Test
     public void constructorTest() {
-        
+        assertNotNull(ngram);
     }
 
     @Test
     public void parsedNGramsTest() {
         String inputText = "The dog was sick.";
-        ngrams = NGramFactory.parseNgrams(inputText, " ", 2);
+        String[] tokens = inputText.replaceAll("\\.", "").split(" ");
+
+        // TEST 1 bi-gram test
+        ngrams = NGramFactory.parseNgrams(tokens, 2);
     }
 
     @After
