@@ -10,6 +10,7 @@ import com.vrn.utils.NGram;
 import com.vrn.utils.NGramFactory;
 import java.util.ArrayList;
 import java.util.List;
+import junit.framework.JUnit4TestAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,9 +19,9 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author vedam
+ * @author Ramnarayan Vedam
+ *
  */
-
 
 public class NGramTest {
     protected NGram<String> ngram;
@@ -64,4 +65,5 @@ public class NGramTest {
     public void tearDown() {
         ngram = null;
     }
+
 }
