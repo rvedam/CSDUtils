@@ -68,4 +68,27 @@ public class MetaMapWrapper {
 
         return null;
     }
+
+    /**
+     * 
+     * @param results
+     * @return
+     */
+    public List<Ev> retrieveCandidates(List<Result> results) {
+        try {
+            List<Ev> candidates = new ArrayList<Ev>();
+            for(Result result: results) {
+                for(Utterance utterance : result.getUtteranceList()) {
+                    for(PCM pcm : utterance.getPCMList()) {
+                        candidates.addAll(pcm.getCandidateList());
+                    }
+                }
+            }
+            return candidates;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

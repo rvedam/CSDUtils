@@ -40,4 +40,13 @@ public class NGram<T> {
     public boolean isCompleteNGram() {
         return (this.tupleSize == this.tuple.size());
     }
+
+    @Override
+    public String toString() {
+        String result = "";
+        for(T component: this.tuple) {
+            result += ' ' + component.toString();
+        }
+        return "";
+    }
 }
